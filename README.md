@@ -32,5 +32,6 @@ Per creare una scena funzionante in realtà virtuale sono necessari alcuni eleme
   - Sistema di locomozione: creare un asset di tipo 'Locomotion Systerm (Action based)' dal menu 'XR'
 - Gestori di input e interazioni: tre gameobject in cui va importato lo script omonimo dal package VR importato prima
   - Input Action Manager: una volta importato lo script, inserire un Action Asset. L'asset 'XRI Default Input Actions (Input Action Asset)' disponibile nella repo è un estensione di quello fornito di default da Unity nella sample scene VR fornita dal software.
-  - XR Interaction Manager
-  - Event System 
+  - XR Interaction Manager: in questo caso va semplicemente importato lo script omonimo, senza configurare altro
+  - Event System: oltre allo script 'Event System' inserire lo script 'XR UI Input Module', con i seguenti parametri ![image](https://github.com/samuiosa/Astrochimica-VR/assets/57435078/c106d861-2a9b-44c7-9ee1-8a319dfcb4dd) le UI Action sono prese direttamente dall'Input Action inserito prima.
+
