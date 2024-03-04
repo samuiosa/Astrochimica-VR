@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
-
+/*Questo script gestisce semplicemente il punteggio, mostrandolo su un TextMeshPro che viene aggiornato a ogni frame
+Le funzioni GetScore e SetScore vengono chiamate dal grano in base alle molecole che ci si attaccano*/
 public class Score : MonoBehaviour
 {
     public int score;
@@ -8,17 +9,14 @@ public class Score : MonoBehaviour
     private TextMeshProUGUI scoreText;
     void Start()
     {
-        // Inizializza il punteggio e ottiene il riferimento al componente Text
         score=0;
         scoreText = GetComponent<TextMeshProUGUI>();
     }
-    // Metodo per ottenere il valore di score
     public int GetScore()
     {
         return score;
     }
 
-    // Metodo per impostare il valore di score
     public void SetScore(int newScore)
     {
         score = newScore;

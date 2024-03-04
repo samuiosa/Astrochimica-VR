@@ -65,25 +65,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Grano.cs" />
-    <Compile Include="Assets\Scripts\SeguiGiocatore.cs" />
     <Compile Include="Assets\Scripts\TimeDisplay.cs" />
-    <Compile Include="Assets\Scripts\AtomLaunch.cs" />
     <Compile Include="Assets\Scripts\Score.cs" />
     <Compile Include="Assets\Scripts\DynamicMoveProvider.cs" />
     <Compile Include="Assets\Scripts\ActionBasedControllerManager.cs" />
-    <Compile Include="Assets\Scripts\FaceTarget.cs" />
     <Compile Include="Assets\Scripts\ShootingStar.cs" />
-    <Compile Include="Assets\Scripts\ResetCamera.cs" />
     <Compile Include="Assets\Scripts\MovGrano.cs" />
     <Compile Include="Assets\Scripts\AtomSpawner.cs" />
-    <Compile Include="Assets\Scripts\AtomThrower.cs" />
-    <Compile Include="Assets\Scripts\FollowCamera.cs" />
     <Compile Include="Assets\Scripts\AtomDestroyer.cs" />
     <Compile Include="Assets\Scripts\LevelManager.cs" />
     <Compile Include="Assets\Scripts\Molecola.cs" />
     <Compile Include="Assets\Scripts\StarsManager.cs" />
     <Compile Include="Assets\Scripts\PauseMenu.cs" />
     <Compile Include="Assets\Scripts\DimensioneAtomo.cs" />
+    <Compile Include="Assets\Scripts\AtomRandom.cs" />
     <Compile Include="Assets\Scripts\CollegaAtomi.cs" />
   </ItemGroup>
   <ItemGroup>

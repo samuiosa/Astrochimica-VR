@@ -1,6 +1,10 @@
 using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(ParticleSystem))]
+/*Lo script gestisce gli eventi da far partire quando una molecola appare a schermo
+Vengono fatti partire un effetto particellare e una clip audio per dare un feedback al giocatore
+Gestisce anche il caso in cui una molecola dovesse toccare un oggetto Destroyer, per evitare di avere molecole vaganti per la mappa
+A differenza degli atomi, una molecola NON viene eliminata per inattività*/
 public class Molecola : MonoBehaviour
 {
     public ParticleSystem molecolaParticleSystem;
@@ -8,13 +12,10 @@ public class Molecola : MonoBehaviour
 
     private void Start()
     {
-        // Avvia il Particle System
         if (molecolaParticleSystem != null)
         {
             molecolaParticleSystem.Play();
         }
-
-        // Avvia l'audio della molecola
         if (audioMolecola != null)
         {
             AudioSource audioSource = GetComponent<AudioSource>();
@@ -31,7 +32,6 @@ public class Molecola : MonoBehaviour
     {
         if (other.collider.CompareTag("Destroyer"))
         {
-            // Distruggo la molecola quando tocca l'oggetto con il tag "destroyer"
             Destroy(gameObject);
         }
     }

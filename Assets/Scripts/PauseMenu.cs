@@ -1,6 +1,12 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+/*Questo script gestisce il menu di pausa
+Quando viene rilevato che il giocatore ha premuto il tasto pausa sul controller (tramite InputActionReference), viene lanciata TogglePauseMenu
+Questa funzione innanzitutto verifica se il giocatore è già in pausa o meno, grazie al boolean isNotPaused:
+    - se NON è in pausa attiva il pannello con le varie opzioni, ferma il tempo e scambia direct interactor con ray interactor
+    - se è in pausa fa l'opposto
+è fondamentale scambiare gli interactor in quanto il gioco si basa sull'afferrare gli oggetti con il direct interactor, che però non permetterebbe di selezionare le opzioni sul menu di pausa. In questo caso è quindi necessario il Ray
+ResumeGame viene chiamata sia se l'utente seleziona "Riprendi", sia se preme il tasto pausa quando è già in pausa*/
 public class PauseMenu : MonoBehaviour
 {
     public InputActionReference pausaButton; //Riferimento al tasto sul controller
@@ -8,7 +14,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject directInteractor;
     public GameObject rayInteractor;
 
-    private bool isNotPaused = true; // Flag che controlla se sono già in pausa
+    private bool isNotPaused = true;
 
     void Awake()
     {
@@ -22,40 +28,24 @@ public class PauseMenu : MonoBehaviour
         {
             if (isNotPaused)
             {
-                // Attiva il menu di pausa
                 Pannello.SetActive(true);
-                // Ferma il tempo di gioco
                 Time.timeScale = 0f;
-                // Disabilita il Direct Interactor
                 directInteractor.SetActive(false);
-                // Abilita il Ray Interactor
                 rayInteractor.SetActive(true);
+                isNotPaused = !isNotPaused;
             }
             else
             {
-                // Riabilita il Direct Interactor
-                directInteractor.SetActive(true);
-                // Disabilita il Ray Interactor
-                rayInteractor.SetActive(false);
-                // Chiudi il menu di pausa
-                Pannello.SetActive(false);
-                // Riprendi il tempo di gioco
-                Time.timeScale = 1f;
+                ResumeGame();
             }
-            // Inverti il flag
-            isNotPaused = !isNotPaused;
+            
         }
     }
     public void ResumeGame(){
-        // Riabilita il Direct Interactor
         directInteractor.SetActive(true);
-        // Disabilita il Ray Interactor
         rayInteractor.SetActive(false);
-        // Chiudi il menu di pausa
         Pannello.SetActive(false);
-        // Riprendi il tempo di gioco
         Time.timeScale = 1f;
-        // Inverti il flag
         isNotPaused = !isNotPaused;
     }
 }

@@ -88,6 +88,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Molecola
       objectReference: {fileID: 0}
+    - target: {fileID: 4876305220755786937, guid: c95295407959a5b4bb5ccadc1fda4b70, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 1292618549558172529, guid: 9e3601b81d8b1a14b9573ead47190620, type: 3}
       propertyPath: m_Enabled
       value: 0

@@ -1,43 +1,34 @@
 using UnityEngine;
+/*Questo script gestisce la creazione e il movimento di un sistema di particelle che rappresenta una stella cadente che va in una direzione casuale.
+Intervallo di spawn, velocità, tempo di vita e distanza sono tutti regolabili a piacimento
+Una coroutine di spawn verrà poi chiamata ogni spawnInterval secondi.
 
+La posizione viene ottenuta tracciando una sfera intorno all'oggetto con un raggio pari a spawnDistance. La funzione posizionerà casualmente la stella su questa sfera*/
 public class ShootingStar : MonoBehaviour
 {
     public ParticleSystem particleSystemPrefab;
-    public float spawnInterval = 30.0f; // Intervallo tra la creazione di ciascun sistema di particelle
-    public float destroyTime = 5.0f; // Tempo massimo prima della distruzione
-    public float spawnDistance = 20f;
-    public float speed = 5f; // Velocità di movimento dell'oggetto
+    public float spawnInterval = 30.0f;
+    public float destroyTime = 5.0f;
+    public float spawnDistance = 20f; // massima distanza in cui generare una stella, a partire dalla posizione del generatore
+    public float speed = 5f;
 
     void Start()
     {
-        // Avvia la creazione dei sistemi di particelle con l'intervallo specificato
         InvokeRepeating("SpawnParticleSystem", 0.0f, spawnInterval);
     }
 
     void SpawnParticleSystem()
     {
-        // Crea il sistema di particelle direttamente nell'oggetto corrente
         ParticleSystem newParticleSystem = Instantiate(particleSystemPrefab, GetRandomSpawnPosition(), Quaternion.identity, transform);
-
-        // Genera una direzione casuale
         Vector3 randomDirection = Random.onUnitSphere;
-
-        // Modifica la velocità del sistema di particelle per riflettere la direzione casuale
         newParticleSystem.GetComponent<Rigidbody>().velocity = randomDirection * speed;
-
-        // Ruota il sistema di particelle in modo che la "testa" segua la direzione del movimento
-        newParticleSystem.transform.LookAt(newParticleSystem.transform.position + -randomDirection);
-
-        // Distruggi il sistema di particelle dopo un certo periodo
+        newParticleSystem.transform.LookAt(newParticleSystem.transform.position + -randomDirection); // Questa riga serve a fare in modo che la "testa" della stella segua la direzione del movimento
         Destroy(newParticleSystem.gameObject, destroyTime);
     }
 
     Vector3 GetRandomSpawnPosition()
     {
-        // Genera coordinate casuali in un cerchio
-        Vector2 randomCircle = Random.insideUnitCircle * spawnDistance;
-
-        // Imposta la coordinata Z a 0 (piano XY)
+        Vector2 randomCircle = Random.insideUnitCircle * spawnDistance; //utilizza spawnDistance per ottenere una posizione casuale all'interno di un cerchio sulla superficie di una sfera
         return new Vector3(randomCircle.x, randomCircle.y, 0.0f);
     }
 }

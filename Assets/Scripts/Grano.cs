@@ -1,19 +1,21 @@
 using UnityEngine;
 using System.Collections.Generic;
-
 [RequireComponent(typeof(Collider))]
+/*Lo script gestisce il comportamento del grano di polvere in entrambi i giochi.
+Ad ogni molecola corretta che lo tocca, viene aumentato il punteggio e l'alpha del suo materiale in modo che il colore sia più acceso
+Inoltre sostituisce la molecola con il modello di Van Der Waals
+La funzione ResetGrano verrà richiamata (nel secondo gioco) da movGrano quando viene modificata la difficoltà*/
 public class Grano : MonoBehaviour
 {
-    public Material granoMaterial;
-    public Score score;
-    public float tranparency=1f; //  Valore di trasparenza iniziale
-    public GameObject prefabWanDerWaals;
-    private List<GameObject> molecoleInside = new List<GameObject>(); // Lista delle molecole attualmente sulla superficie del grano
+    public Material granoMaterial;//Materiale del grano
+    public Score score; //Riferimento al punteggio
+    public float tranparency=1f; //Trasparenza iniziale
+    public GameObject prefabVanDerWaals; //Prefab della molecola di Van der Waals
+    private List<GameObject> molecoleInside = new List<GameObject>();
 
     private void Start()
     {
         score = GameObject.Find("Score").GetComponent<Score>();
-
         Color granoColor = granoMaterial.color;
         granoColor.a = 0.03921569f*tranparency;
         granoMaterial.color = granoColor;
@@ -21,27 +23,19 @@ public class Grano : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        // Verifica se l'oggetto con cui si è verificata una collisione ha il tag "Molecola"
-        // E se la molecola non è già presente nella lista delle molecole all'interno del grano
         if (other.gameObject.CompareTag("Molecola") && !molecoleInside.Contains(other.gameObject) )
         {
             IncrementaPunteggio();
-            ChangeAlpha(); // Cambia l'alpha del grano
-
-            // Memorizza la posizione e la rotazione della molecola corrente
+            ChangeAlpha();
             Vector3 molecolaPosition = other.transform.position;
             Quaternion molecolaRotation = other.transform.rotation;
-            Rigidbody molecolaRigidbody = other.gameObject.GetComponent<Rigidbody>(); // Ferma il movimento della molecola
+            Rigidbody molecolaRigidbody = other.gameObject.GetComponent<Rigidbody>();
             molecolaRigidbody.isKinematic = true;
-
-            // Distruggi l'oggetto molecola corrente
             Destroy(other.gameObject);
 
-            // Crea una nuova istanza del prefab sostitutivo con la molecola di Wan Der Waals
-            GameObject nuovaMolecola = Instantiate(prefabWanDerWaals, molecolaPosition, molecolaRotation);
-            nuovaMolecola.transform.parent = transform; // Rendi la nuova molecola figlia del grano
-
-            molecoleInside.Add(nuovaMolecola); // Aggiungi la nuova molecola alla lista delle molecole attaccate al grano
+            GameObject nuovaMolecola = Instantiate(prefabVanDerWaals, molecolaPosition, molecolaRotation);
+            nuovaMolecola.transform.parent = transform;
+            molecoleInside.Add(nuovaMolecola);
 
         }
     }
@@ -61,20 +55,15 @@ public class Grano : MonoBehaviour
             granoMaterial.color = granoColor;
         }
     }
-    public void ResetGrano()
+    public void ResetGrano()// Viene chiamata se cambio difficoltà nel secondo gioco, in modo da resettare completamente il livello
     {
-        // Resetta l'alpha del grano
         Color granoColor = granoMaterial.color;
         granoColor.a = 0.03921569f * tranparency;
         granoMaterial.color = granoColor;
-
-        // Distruggi tutti gli oggetti figli
         foreach (Transform child in transform)
         {
             Destroy(child.gameObject);
         }
-
-        // Pulisci la lista delle molecole attaccate
         molecoleInside.Clear();
     }
 }

@@ -1,55 +1,49 @@
 using UnityEngine;
+/* Questo script gestisce i movimenti del grano nel secondo gioco, a seconda della difficoltà scelta dal giocatore dal menu dropdown
+ogni volta che viene cambiato valore nel dropdown [OnValueChanged], viene chiamata la funzione ImpostaDifficoltà, che prende l'id dell'opzione scelta.
+Ad ogni frame viene chiamata la funzione difficoltà corrispondente, in modo da mantenere il comportamento del grano coerente con l'opzione scelta.
+A facile e difficile il grano si muove avanti e indietro (Mathf.PingPong) da posIniziale a posFinale ad una velocità regolabile.
+A difficile, inoltre, il grano si muove simulando un onda sinusoidale sugli assi y e z, con un offset regolabile*/
 
 public class MovGrano : MonoBehaviour
 {
-    public float velocitaFacile = 0.5f; // Velocità quando la difficoltà è impostata su Facile
-    public float velocitaDifficile = 2f; // Range di movimento quando la difficoltà è impostata su Difficile
-    private Vector3 posReset;
+    public float velocitaFacile = 0.5f;
+    public float velocitaDifficile = 2f;
+    public float offsetY=0;
+    public float offsetZ=0;
     public Vector3 posIniziale;
     public Vector3 posFinale;
-    public Timer timer; // Riferimento al timer
-    public Score score; // Riferimento al punteggio
+    public Timer timer;
+    public Score score;
     public TMPro.TMP_Dropdown dropdownDifficolta;
-
-    // Start is called before the first frame update
+    private Vector3 posReset;
+    private int valoreDifficolta;
     void Start()
     {
         posReset = transform.position;
-        // Avvia la coroutine per far muovere il grano continuamente
-        StartCoroutine(MuoviGranoContinuamente());
-    }
-
-    private System.Collections.IEnumerator MuoviGranoContinuamente()
-    {
-        while (true)
-        {
-            ImpostaDifficoltà(); // Aggiorna la difficoltà ogni iterazione
-            yield return null;
-        }
     }
 
     public void ImpostaDifficoltà()
     {
-        // Ottieni il valore selezionato nel Dropdown
-        string valoreDifficolta = dropdownDifficolta.options[dropdownDifficolta.value].text;
-
-        // Chiamiamo la funzione corrispondente alla difficoltà selezionata
+        valoreDifficolta = dropdownDifficolta.value;
+    }
+    void Update(){
         switch (valoreDifficolta)
         {
-            case "Grano Fermo":
+            case 0:
                 GranoFermo();
                 break;
 
-            case "Facile":
+            case 1:
                 GranoFacile();
                 break;
 
-            case "Difficile":
+            case 2:
                 GranoDifficile();
                 break;
 
             default:
-                Debug.LogWarning("Difficoltà non riconosciuta: " + valoreDifficolta);
+                Debug.Log("Indice errato: " + dropdownDifficolta.value);
                 break;
         }
     }
@@ -62,12 +56,15 @@ public class MovGrano : MonoBehaviour
     private void GranoFacile()
     {
         float t = Mathf.PingPong(Time.time * velocitaFacile, 1);
-        transform.localPosition = Vector3.Lerp(posIniziale, posFinale, t);
+        transform.position = Vector3.Lerp(posIniziale, posFinale, t);
     }
 
     private void GranoDifficile()
     {
         float t = Mathf.PingPong(Time.time * velocitaDifficile, 1);
-        transform.localPosition = Vector3.Lerp(posIniziale, posFinale, t);
+        Vector3 posizione = Vector3.Lerp(posIniziale, posFinale, t);
+        posizione.y += Mathf.Sin(Time.time * velocitaDifficile)*offsetY;
+        posizione.z+=Mathf.Sin(Time.time * velocitaDifficile)*offsetZ;
+        transform.position = posizione;
     }
 }

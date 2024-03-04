@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 7318413164488119399}
   - component: {fileID: 7733446957164083487}
   - component: {fileID: 7079416781410543252}
-  - component: {fileID: -2877636240383516237}
   - component: {fileID: -4594450235868346661}
   m_Layer: 0
   m_Name: AtomoH
@@ -201,7 +200,7 @@ MonoBehaviour:
   m_SelectEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -2877636240383516237}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CollegaAtomi, Assembly-CSharp
         m_MethodName: Grabbed
         m_Mode: 1
@@ -314,22 +313,6 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
---- !u!114 &-2877636240383516237
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5767797576138505290}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69518fc0eb066c94a9695c3df42ce979, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  atomoCollegabile: {fileID: 8044902287537318947, guid: 4e7638354305c5b46a91c1f1fdeaaf10, type: 3}
-  link: {fileID: 8693322926401943148, guid: d5318e540bda3a24eac53b7fd8f0a530, type: 3}
-  molecolaPrefab: {fileID: 4876305220755786937, guid: c95295407959a5b4bb5ccadc1fda4b70, type: 3}
-  maxCollegamenti: 1
 --- !u!114 &-4594450235868346661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -342,4 +325,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39ea295e8db0d28469045822f96a7fbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLimit: 45
+  timeLimit: 10

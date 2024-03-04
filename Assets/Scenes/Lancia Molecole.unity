@@ -175,6 +175,7 @@ MonoBehaviour:
   parent: {fileID: 441096846}
   lifeTime: 10
   spawnInterval: 1.5
+  timer: {fileID: 451432334}
 --- !u!33 &2711819
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -607,8 +608,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 464206179}
         m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
-        m_MethodName: mainMenu
-        m_Mode: 1
+        m_MethodName: ChangeScene
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1424,38 +1425,6 @@ MonoBehaviour:
   m_RightControllerTransform: {fileID: 1161913983}
   m_LeftHandMovementDirection: 0
   m_RightHandMovementDirection: 0
---- !u!1 &207957614
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 207957615}
-  m_Layer: 0
-  m_Name: Grano
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &207957615
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 207957614}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.25, y: 0.16, z: -1.63}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1348656042}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &241639754
 GameObject:
   m_ObjectHideFlags: 0
@@ -2724,7 +2693,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5bf36506fede8c47a9f92855c38a5d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPosition: {x: 0, y: 0, z: 0}
 --- !u!4 &464206180
 Transform:
   m_ObjectHideFlags: 0
@@ -3538,7 +3506,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 924841355}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.92387956, z: 0, w: 0.38268343}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3548,7 +3516,7 @@ Transform:
   - {fileID: 51447762}
   - {fileID: 166707699}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 135, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &936661180
 GameObject:
   m_ObjectHideFlags: 0
@@ -5959,7 +5927,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 207957615}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: da3c33f8f7251414e8f8a991373c352e, type: 3}
       propertyPath: m_LocalScale.x
@@ -5975,7 +5943,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: da3c33f8f7251414e8f8a991373c352e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.017
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: da3c33f8f7251414e8f8a991373c352e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5983,35 +5951,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: da3c33f8f7251414e8f8a991373c352e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.486
+      value: -7.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: da3c33f8f7251414e8f8a991373c352e, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.37014598
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: da3c33f8f7251414e8f8a991373c352e, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.37014598
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: da3c33f8f7251414e8f8a991373c352e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.60248816
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: da3c33f8f7251414e8f8a991373c352e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.60248816
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: da3c33f8f7251414e8f8a991373c352e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: da3c33f8f7251414e8f8a991373c352e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -131.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: da3c33f8f7251414e8f8a991373c352e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -14.93
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: da3c33f8f7251414e8f8a991373c352e, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -6019,7 +5987,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 3bb20f3ad7df7844b86b3e8e498b7491, type: 2}
     - target: {fileID: 919132149155446097, guid: da3c33f8f7251414e8f8a991373c352e, type: 3}
       propertyPath: m_Name
-      value: grano
+      value: Grano
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6035,11 +6003,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1348656046}
   m_SourcePrefab: {fileID: 100100000, guid: da3c33f8f7251414e8f8a991373c352e, type: 3}
---- !u!4 &1348656042 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: da3c33f8f7251414e8f8a991373c352e, type: 3}
-  m_PrefabInstance: {fileID: 1348656041}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1348656043 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: da3c33f8f7251414e8f8a991373c352e, type: 3}
@@ -6060,7 +6023,7 @@ MonoBehaviour:
   granoMaterial: {fileID: 2100000, guid: 3bb20f3ad7df7844b86b3e8e498b7491, type: 2}
   score: {fileID: 1376996331}
   tranparency: 5
-  prefabWanDerWaals: {fileID: 355710088862010116, guid: 802ce77e897bcf34e90a961094216bf3, type: 3}
+  prefabVanDerWaals: {fileID: 355710088862010116, guid: 802ce77e897bcf34e90a961094216bf3, type: 3}
 --- !u!64 &1348656045
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -6095,10 +6058,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07a0740f7d51c1b43811a830e75344d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocitaFacile: 0.5
-  velocitaDifficile: 1.5
-  posIniziale: {x: 5, y: 0, z: -3}
-  posFinale: {x: -5, y: 0, z: -3}
+  velocitaFacile: 0.25
+  velocitaDifficile: 0.75
+  offsetY: 3
+  offsetZ: 2
+  posIniziale: {x: 9, y: 0, z: -7.5}
+  posFinale: {x: -8.5, y: 0, z: -7.5}
   timer: {fileID: 451432334}
   score: {fileID: 1376996331}
   dropdownDifficolta: {fileID: 1276404376}
@@ -6513,12 +6478,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 464206179}
         m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
-        m_MethodName: formAcqua
-        m_Mode: 1
+        m_MethodName: ChangeScene
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -7407,15 +7372,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1669957477}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.8102462, w: 0.5860897}
-  m_LocalPosition: {x: 23.99, y: 20.66, z: 9.24}
+  m_LocalRotation: {x: 0.2097072, y: 0.1516912, z: 0.7826378, w: 0.5661192}
+  m_LocalPosition: {x: 23.99, y: 20.66, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 896876827}
   - {fileID: 117367656}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 30, z: 108.24}
 --- !u!1 &1706992779
 GameObject:
   m_ObjectHideFlags: 0
@@ -9475,11 +9440,11 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 924841356}
-  - {fileID: 207957615}
-  - {fileID: 1147234571}
-  - {fileID: 1669957478}
   - {fileID: 1756860865}
+  - {fileID: 1147234571}
   - {fileID: 2001012292}
+  - {fileID: 441096846}
+  - {fileID: 1348656041}
+  - {fileID: 1669957478}
   - {fileID: 258541997}
   - {fileID: 936661181}
-  - {fileID: 441096846}
