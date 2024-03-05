@@ -122,6 +122,7 @@ Nell'inspector vanno configurati
   - **dropdownDifficolta**: riferimento al dropdown nel menu di pausa
 
 La sezione OnValueChanged del dropdown viene quindi configurata come segue, chiamando la funzione corrispondente all'interno di questo script:
+
 ![image](https://github.com/samuiosa/Astrochimica-VR/assets/57435078/f736706a-2413-48a2-bfa5-888ce1356e9a)
 
 ### Level Manager
@@ -139,3 +140,29 @@ Nell'inspector vanno configurati
   - **Pannello**: Riferimento al pannello del menu di pausa
   - **directInteractor**: Riferimento al Direct Interactor
   - **rayInteractor**: Riferimento al Ray Interactor
+
+### Score
+Questo script va assegnato ad un oggetto TextMeshPro, che mostrerà il punteggio. Esso viene aggiornato ad ogni frame in base alle azioni del giocatore. Sarà il grano ad aggiornare il punteggio ogni volta che rileva il collegamento di una molecola corretta.
+Nell'inspector vanno configurati
+  - **score**: Punteggio del giocatore, aggiornabile da SetScore
+  - **timer**: Riferimento al timer in modo da aggiornare il punteggio solo quando il timer è attivo
+
+### Time Display
+Anche questo script va assegnato ad un oggetto TextMeshPro, che mostrerà il tempo rimanente, ignorando la parte decimale. L'aggiornamento avviene ad ogni frame decrementando il tempo fino allo 0, quando viene visualizzato il testo "Fine". La funzione "ResetTimer" viene chiamata per resettare il timer quando il giocatore cambia la difficoltà.
+Nell'inspector vanno configurati
+  - **timeRemaining** tempo attuale
+  - **timeUp** boolean che indica se il tempo è scaduto
+
+### Shooting Star
+Va assegnato ad un oggetto vuoto in modo da gestire la creazione e il movimento di particelle che rappresentano una stella cadente. La stella cade in una direzione casuale con parametri come l'intervallo di spawn, la velocità, il tempo di vita e la distanza dallo spawner.
+Nell'inspector vanno configurati
+  - **particleSystemPrefab**:Prefab del sistema di particelle che rappresenta la stella cadente
+  - **spawnInterval**:Intervallo di tempo tra una stella e la successiva
+  - **destroyTime**:Tempo di vita di ciascuna stella cadente
+  - **spawnDistance**:Massima distanza in cui generare una stella a partire dalla posizione dello spawner
+  - **speed**:Velocità di movimento delle stelle cadenti
+
+### Stars Manager
+Gestisce un sistema di particelle che rappresenta le stelle nell'ambiente spaziale. Esso assicura che il sistema di particelle segua la camera principale (in modo da creare l'illusione che le stelle siano nello spazio) e aggiorna dinamicamente il colore e la luminosità delle stelle.
+Nell'inspector va configurata
+  - **Brightness**: Luminosità desiderata delle stelle
