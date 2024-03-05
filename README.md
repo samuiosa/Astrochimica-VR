@@ -1,4 +1,4 @@
-# Astrochimica in realtà virtuale con Unity
+![image](https://github.com/samuiosa/Astrochimica-VR/assets/57435078/54f65626-f1ff-4996-b026-0407f1f98846)# Astrochimica in realtà virtuale con Unity
 
 ## Setup di sviluppo
 
@@ -120,6 +120,7 @@ Nell'inspector vanno configurati
   - **Timer**: riferimento al timer
   - **Score**: riferimento al punteggio
   - **dropdownDifficolta**: riferimento al dropdown nel menu di pausa
+
 La sezione OnValueChanged del dropdown viene quindi configurata come segue, chiamando la funzione corrispondente all'interno di questo script:
 ![image](https://github.com/samuiosa/Astrochimica-VR/assets/57435078/f736706a-2413-48a2-bfa5-888ce1356e9a)
 
@@ -128,4 +129,13 @@ Gestisce la transizione tra le diverse scene del gioco. Fornisce metodi per camb
 I metodi di questo script saranno quindi collegati ai metodi onClick del menu principale e del menu di pausa, in questo esempio lo script viene chiamato alla pressione di un bottone per passare alla scena con id 2:
 ![image](https://github.com/samuiosa/Astrochimica-VR/assets/57435078/8a99f9ae-a8fc-4fae-a56d-f9ace63b57c3)
 
-### 
+### Pause Menu
+Gestisce il menu di pausa nel gioco. Quando il giocatore preme il tasto di pausa sul controller (tramite InputActionReference), viene chiamata la funzione TogglePauseMenu. Questa funzione verifica se il gioco è attualmente in pausa o meno, e in base a ciò attiva o disattiva il pannello del menu di pausa. Inoltre, regola il tempo di gioco, attiva o disattiva i Direct e Ray interactor per consentire l'interazione con il menu di pausa. Il tasto di pausa va configurato nell'Input Action Asset, aggiungendo un tasto all'azione come nell'immagine. N.B: evitate di utilizzare il Menu button, in quanto per visori come il Meta Quest è usato per tornare al menu del visore, ignorando l'input in-game. Nel mio caso ho utilizzato il "Primary Button" di entrambi i controller.
+
+![image](https://github.com/samuiosa/Astrochimica-VR/assets/57435078/9048b795-3bb6-44e1-8e99-11d8f2346e7f)
+
+Nell'inspector vanno configurati
+  - **pausaButton**: riferimento al tasto di pausa sul controller
+  - **Pannello**: Riferimento al pannello del menu di pausa
+  - **directInteractor**: Riferimento al Direct Interactor
+  - **rayInteractor**: Riferimento al Ray Interactor
