@@ -169,6 +169,7 @@ Nell'inspector vanno configurati
 Gestisce un sistema di particelle che rappresenta le stelle nell'ambiente spaziale. Esso assicura che il sistema di particelle segua la camera principale (in modo da creare l'illusione che le stelle siano nello spazio) e aggiorna dinamicamente il colore e la luminosità delle stelle.
 Nell'inspector va configurata
   - **Brightness**: Luminosità desiderata delle stelle
+
 Parametri delle stelle:
 ![image](https://github.com/samuiosa/Astrochimica-VR/assets/57435078/b23d42c1-d9c6-4eb9-881a-72d7b9b592db)
 
