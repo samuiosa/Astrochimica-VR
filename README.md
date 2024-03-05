@@ -71,11 +71,11 @@ Quando avviene una collisione tra due atomi collegabili con tag corrispondenti, 
 ### Atom Destroyer
 Questo script gestisce la distruzione degli atomi che non vengono utilizzati o escono dai limiti della mappa. È assegnato ai prefab degli atomi in modo che possa essere configurato per gestire il tempo di vita massimo di quelli inutilizzati.
 Un riferimento a questo script viene inserito in ogni minigioco per consentire la gestione personalizzata del "timeLimit" in base alle esigenze specifiche del gioco.
-  -**timeLimit** è il tempo massimo di vita di un atomo inutilizzato. Se un atomo resta alla sua posizione di spawn per un periodo di tempo superiore a questo limite, verrà distrutto.
+  - **timeLimit** è il tempo massimo di vita di un atomo inutilizzato. Se un atomo resta alla sua posizione di spawn per un periodo di tempo superiore a questo limite, verrà distrutto.
 L'altro caso in cui l'atomo viene distrutto è se entra in contatto con un collider con il tag "Destroyer"
 
 ### Atom Spawner
-Questo script gestisce lo spawn degli atomi nel primo minigioco. Deve essere assegnato a un oggetto spawner diverso per ogni tipo di atomo. Le coordinate vengono prese da un file CSV, le cui righe sono rimescolate. Poi moltiplica le coordinate per un fattore di scala in modo da poter regolare a piacimento le dimensioni dell'ambiente. Lo script spawna periodicamente un atomo basato sulle coordinate fornite finchè ci sono ancora righe da leggere e il timer non è scaduto.
+Questo script gestisce lo spawn degli atomi nel primo minigioco. Deve essere assegnato a un oggetto spawner diverso per ogni tipo di atomo. Le coordinate vengono prese da un file CSV, le cui righe sono rimescolate. Tali coordinate vengono moltiplicate per un fattore di scala in modo da poter regolare a piacimento le dimensioni dell'ambiente. Lo script spawna periodicamente un atomo basato sulle coordinate fornite finchè ci sono ancora righe da leggere e il timer non è scaduto.
 Per utilizzare lo script è necessario configurare questi oggetti nell'inspector:
   - **objectPrefab**: Prefab dell'atomo da spawnare.
   - **lifeTime** Tempo di vita massimo di un atomo inutilizzato 
@@ -169,3 +169,6 @@ Nell'inspector vanno configurati
 Gestisce un sistema di particelle che rappresenta le stelle nell'ambiente spaziale. Esso assicura che il sistema di particelle segua la camera principale (in modo da creare l'illusione che le stelle siano nello spazio) e aggiorna dinamicamente il colore e la luminosità delle stelle.
 Nell'inspector va configurata
   - **Brightness**: Luminosità desiderata delle stelle
+Parametri delle stelle:
+![image](https://github.com/samuiosa/Astrochimica-VR/assets/57435078/b23d42c1-d9c6-4eb9-881a-72d7b9b592db)
+
