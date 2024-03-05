@@ -1,4 +1,4 @@
-![image](https://github.com/samuiosa/Astrochimica-VR/assets/57435078/54f65626-f1ff-4996-b026-0407f1f98846)# Astrochimica in realtà virtuale con Unity
+# Astrochimica in realtà virtuale con Unity
 
 ## Setup di sviluppo
 
