@@ -25,6 +25,8 @@ Altri package verranno importati automaticamente in base alle necessità.
 Questo strumento permette di sviluppare anche a chi non ha un headset VR in casa, simulando con mouse e tastiera gli input di un visore VR e dei suoi controller. Premesso che questa opzione è **veramente** scomoda, può essere utile se si devono testare delle cose semplici come guardarsi intorno o afferrare oggetti. In ogni caso vi invito a testare principalmente con un vero device.
 Per attivarlo è necessario andare in 'Edit > Project Settings > XR Plug-In Management', estendendo l'opzione selezionare 'XR Interaction Toolkit' ed abilitare 'Use XR Device Simulator in scenes'.
 Una volta fatto, quando entrerete in Play Mode avrete in basso a sinistra un menu con cui saranno spiegati i comandi del simulatore.
+![image](https://github.com/samuiosa/Astrochimica-VR/assets/57435078/8b032d4b-79f6-42aa-934d-fed02f0ceed7)
+
 
 ### Creazione di una scena
 Per creare una scena funzionante in realtà virtuale sono necessari alcuni elementi fondamentali:
@@ -32,7 +34,7 @@ Per creare una scena funzionante in realtà virtuale sono necessari alcuni eleme
   - Camera e controller: creati in automatico con l'XR Origin, la loro configurazione verrà spiegata dopo
   - Sistema di locomozione: creare un asset di tipo 'Locomotion Systerm (Action based)' dal menu 'XR'
 - Gestori di input e interazioni: tre gameobject in cui va importato lo script omonimo dal package VR importato prima
-  - Input Action Manager: una volta importato lo script, inserire un Action Asset. L'asset 'XRI Default Input Actions (Input Action Asset)' disponibile nella repo è un estensione di quello fornito di default da Unity nella sample scene VR fornita dal software, nella cartella 'VRTemplateAssets'.
+  - Input Action Manager: una volta importato lo script, inserire un Action Asset. L'asset 'XRI Default Input Actions (Input Action Asset)' disponibile nella repo è un estensione di quello fornito di default da Unity nella sample scene VR, nella cartella 'VRTemplateAssets'.
   - XR Interaction Manager: in questo caso va semplicemente importato lo script omonimo, senza configurare altro
   - Event System: oltre allo script 'Event System' inserire lo script 'XR UI Input Module', con i seguenti parametri. Le UI Action inserite sono prese direttamente dall'Input Action inserito prima. ![image](https://github.com/samuiosa/Astrochimica-VR/assets/57435078/c106d861-2a9b-44c7-9ee1-8a319dfcb4dd)
  
@@ -42,17 +44,18 @@ Una volta creato l'asset, potete aggiungere gli elementi per il movimento e la r
 ### Gestione dei controller
 Se i controller inseriti da unity sono di tipo 'Device Based', cancellarli ed aggiungere dei controller 'Action Based' e configurarli aggiungendo gli interactor a voi necessari (che devono sempre essere action based). Nel mio caso sono serviti il [Direct Interactor](https://docs.unity3d.com/Packages/com.unity.xr.interaction.toolkit@2.0/manual/xr-direct-interactor.html) e il [Ray interactor](https://docs.unity3d.com/Packages/com.unity.xr.interaction.toolkit@2.0/manual/xr-ray-interactor.html). Questi interactor vanno poi inseriti nel controller all'interno dello script "Action Based Controller Manager", presente nella cartella Scripts nella repo. Anche questo script è fornito da Unity nel package 'VRTemplateAssets' di cui ho parlato prima. Gli interactor vanno poi inseriti anche nello script 'XR Interaction Group', che va aggiunto manualmente. Una volta fatto questo passaggio, vanno configurate le varie action negli script 'Action Based Controller Manager' e 'XR Controller' (Action-Based), aggiungendo i comandi dall'Input Action importato prima. Alla fine, dovreste avere una configurazione simile per entrambi i controller: ![image](https://github.com/samuiosa/Astrochimica-VR/assets/57435078/1ee88aa0-1d4a-46da-8c0a-122a271e0e4d)
 
-Nella sezione 'Models' potete aggiungere un modello ai controller, nel mio caso ho inserito il modello di default sempre fornito da Unity nel package di default, che trovate nella cartella Models. Ho poi creato un prefab per il controller destro e sinistro semplicemente specchiandone uno.
+Nella sezione 'Models' potete aggiungere un modello ai controller, nel mio caso ho inserito il modello di default sempre fornito da Unity nel package di default, che trovate nella cartella Models. Ho poi creato un prefab per il controller sinistro semplicemente specchiandolo (scale dell'asse X  a -1).
 
 Completato questo passaggio, dovreste avere nella gerarchia una struttura simile
 
 ![image](https://github.com/samuiosa/Astrochimica-VR/assets/57435078/79b000cb-dcd7-4d41-bc24-3770ccba727e)
 
 Questa scena (che ho inserito come scena di default nella repo) può essere utilizzata come base da cui partire per costruire un ambiente VR simile a quelli utilizzati nel progetto.
+Importante è anche impostare la gravità spaziale settando a 0 l'asse Y in 'Edit > Project Settings > Physics > Gravity'.
 
  ### Gestione di Layer e tag
  Per gestire al meglio il funzionamento degli script e degli oggetti sulla scena ho creato alcuni layer e tag:
-   - I layer servono a rendere alcuni oggetti invisibili al giocatore 'Nascosto' o visibili solo ad alcune camere: la UI Camera e la Post camera, camere overlay che visualizzano rispettivamente i layer 'VFX' e 'UI', in modo da poter gestire queste cose separatamente dalla camera principale in fase di test.
+   - I layer servono a rendere alcuni oggetti invisibili al giocatore o visibili solo ad alcune camere: la UI Camera e la Post camera, overlay che visualizzano rispettivamente i layer 'VFX' e 'UI', in modo da poter gestire queste cose separatamente dalla camera principale. Il layer 'Nascosto' invece è per gli oggetti che devono essere completamente invisibili al giocatore, come gli spawner.
    - I tag servono a gestire il funzionamento degli script in modo più semplice, in particolare ho creato i tag 'AtomoO', 'AtomoH', 'Molecola' e 'Destroyer'
 
 ## Configurazione degli script
@@ -66,13 +69,13 @@ Nell'inspector vanno inseriti i seguenti oggetti:
 Quando avviene una collisione tra due atomi collegabili con tag corrispondenti, un FixedJoint viene creato per collegarli. Viene quindi creato un oggetto link tra gli atomi per rappresentare il collegamento. Quando il numero massimo di collegamenti viene raggiunto, viene istanziato il prefab della molecola, distruggendo gli atomi collegati e l'atomo corrente.
 
 ### Atom Destroyer
-Questo script distruzione degli atomi che non vengono utilizzati o escono dai limiti della mappa. È assegnato ai prefab degli atomi in modo che possa essere configurato per gestire il tempo di vita massimo degli atomi inutilizzati.
+Questo script gestisce la distruzione degli atomi che non vengono utilizzati o escono dai limiti della mappa. È assegnato ai prefab degli atomi in modo che possa essere configurato per gestire il tempo di vita massimo di quelli inutilizzati.
 Un riferimento a questo script viene inserito in ogni minigioco per consentire la gestione personalizzata del "timeLimit" in base alle esigenze specifiche del gioco.
   -**timeLimit** è il tempo massimo di vita di un atomo inutilizzato. Se un atomo resta alla sua posizione di spawn per un periodo di tempo superiore a questo limite, verrà distrutto.
 L'altro caso in cui l'atomo viene distrutto è se entra in contatto con un collider con il tag "Destroyer"
 
 ### Atom Spawner
-Questo script gestisce lo spawn degli atomi nel primo minigioco. Deve essere assegnato a un oggetto spawner **per ogni atomo**. Le coordinate vengono prese da un file CSV, le cui righe sono rimescolate. Poi moltiplica le coordinate per un fattore di scala in modo da poter regolare a piacimento le dimensioni dell'ambiente. Lo script spawna periodicamente un atomo basato sulle coordinate fornite finchè ci sono ancora righe da leggere e il timer non è scaduto.
+Questo script gestisce lo spawn degli atomi nel primo minigioco. Deve essere assegnato a un oggetto spawner diverso per ogni tipo di atomo. Le coordinate vengono prese da un file CSV, le cui righe sono rimescolate. Poi moltiplica le coordinate per un fattore di scala in modo da poter regolare a piacimento le dimensioni dell'ambiente. Lo script spawna periodicamente un atomo basato sulle coordinate fornite finchè ci sono ancora righe da leggere e il timer non è scaduto.
 Per utilizzare lo script è necessario configurare questi oggetti nell'inspector:
   - **objectPrefab**: Prefab dell'atomo da spawnare.
   - **lifeTime** Tempo di vita massimo di un atomo inutilizzato 
