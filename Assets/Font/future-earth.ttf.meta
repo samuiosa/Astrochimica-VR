@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8ead74aa3e9c75a49a915514896e84f9
+guid: cfd7bf2a5aa48d04b89eaf386a066595
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Nulshock
+  - Future Earth
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
