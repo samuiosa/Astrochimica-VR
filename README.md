@@ -44,6 +44,8 @@ Una volta creato l'asset, potete aggiungere gli elementi per il movimento e la r
 ### Gestione dei controller
 Se i controller inseriti da unity sono di tipo 'Device Based', cancellarli ed aggiungere dei controller 'Action Based' e configurarli aggiungendo gli interactor a voi necessari (che devono sempre essere action based). Nel mio caso sono serviti il [Direct Interactor](https://docs.unity3d.com/Packages/com.unity.xr.interaction.toolkit@2.0/manual/xr-direct-interactor.html) e il [Ray interactor](https://docs.unity3d.com/Packages/com.unity.xr.interaction.toolkit@2.0/manual/xr-ray-interactor.html). Questi interactor vanno poi inseriti nel controller all'interno dello script "Action Based Controller Manager", presente nella cartella Scripts nella repo. Anche questo script è fornito da Unity nel package 'VRTemplateAssets' di cui ho parlato prima. Gli interactor vanno poi inseriti anche nello script 'XR Interaction Group', che va aggiunto manualmente. Una volta fatto questo passaggio, vanno configurate le varie action negli script 'Action Based Controller Manager' e 'XR Controller' (Action-Based), aggiungendo i comandi dall'Input Action importato prima. Alla fine, dovreste avere una configurazione simile per entrambi i controller: ![image](https://github.com/samuiosa/Astrochimica-VR/assets/57435078/1ee88aa0-1d4a-46da-8c0a-122a271e0e4d)
 
+Nel mio caso ho aumentato il raggio dello Sphere collider del direct interactor, aumentando di fatto il range con cui possono essere toccati gli oggetti. Potete sperimentare con questo valore in base alle vostre necessità.
+
 Nella sezione 'Models' potete aggiungere un modello ai controller, nel mio caso ho inserito il modello di default sempre fornito da Unity nel package di default, che trovate nella cartella Models. Ho poi creato un prefab per il controller sinistro semplicemente specchiandolo (scale dell'asse X  a -1).
 
 Completato questo passaggio, dovreste avere nella gerarchia una struttura simile
@@ -66,6 +68,7 @@ Nell'inspector vanno inseriti i seguenti oggetti:
   - **link**: prefab del collegamento tra atomi
   - **molecolaPrefab**: prefab della molecola da creare
   - **maxCollegamenti**: numero massimo di atomi a cui può essere collegato prima di creare la molecola
+
 Quando avviene una collisione tra due atomi collegabili con tag corrispondenti, un FixedJoint viene creato per collegarli. Viene quindi creato un oggetto link tra gli atomi per rappresentare il collegamento. Quando il numero massimo di collegamenti viene raggiunto, viene istanziato il prefab della molecola, distruggendo gli atomi collegati e l'atomo corrente.
 
 ### Atom Destroyer
@@ -174,3 +177,24 @@ Parametri delle stelle:
 
 ![image](https://github.com/samuiosa/Astrochimica-VR/assets/57435078/b23d42c1-d9c6-4eb9-881a-72d7b9b592db)
 
+## Esportare il progetto
+### Export per Meta Quest
+Per esportare il progetto per un dispositivo Meta è necessario selezionare 'Android' in build settings, cambiare la compressione delle texture in ASTC e Max Texture Size a 2048.
+Nelle impostazioni del progetto, alla sezione Player è necessario impostare come **Minimum API level** Android 6.0 o una qualsiasi versione successiva, visto che è l'API minima supportata dai dispositivi Quest. Inoltre selezionare 'Automatic' come **Install location**.
+Successivamente, impostare le voci successive come nell'immagine
+
+![image](https://github.com/samuiosa/Astrochimica-VR/assets/57435078/657a0848-ed86-4b62-9fbf-14d775d6940a)
+
+
+Nella sezione 'XR Plugin Management' selezionare 'Android' e spuntare la voce 'Oculus'. Nella sezione Oculus selezionare le seguenti voci
+
+![image](https://github.com/samuiosa/Astrochimica-VR/assets/57435078/a6a900ab-52b6-432f-ab0a-22910c2e7b1b)
+
+Salvati queste impostazioni, potete procedere con la build del progetto, che in questo caso produrrà un file .apk che potete installare sul Meta Quest. Per l'installazione potete impostare il dispositivo in modalità developer, collegarlo al PC e installare l'apk con SideQuest (https://sidequestvr.com/setup-howto).
+
+### Export per HTC Vive / Qualsiasi headset che supporta SteamVR
+Partendo dalle impostazioni precedenti, in build settings selezionare 'Windows' come piattaforma e rimuovere il limite alle texture.
+Nelle impostazioni 'XR Plugin Management', selezionare **OpenXR** per poi inserire i device desiderati nella sezione 'Interaction Profiles'.
+Una volta fatto, potete procedere con la build del progetto, che in questo caso sarà un file exe.
+
+Maggiori approfondimenti a riguardo: https://youtu.be/pNYY1JsS7tY?si=62n99udqdYlcChZC 
