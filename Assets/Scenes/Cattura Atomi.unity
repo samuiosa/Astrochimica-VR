@@ -1916,7 +1916,7 @@ MonoBehaviour:
   m_System: {fileID: 908797047}
   m_MoveSpeed: 1
   m_EnableStrafe: 1
-  m_EnableFly: 0
+  m_EnableFly: 1
   m_UseGravity: 1
   m_GravityApplicationMode: 0
   m_ForwardSource: {fileID: 1973649639}
@@ -4277,7 +4277,7 @@ MonoBehaviour:
   granoMaterial: {fileID: 2100000, guid: 3bb20f3ad7df7844b86b3e8e498b7491, type: 2}
   score: {fileID: 546899665}
   tranparency: 5
-  prefabVanDerWaals: {fileID: 0}
+  prefabVanDerWaals: {fileID: 355710088862010116, guid: 802ce77e897bcf34e90a961094216bf3, type: 3}
 --- !u!64 &1187297434
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -6752,7 +6752,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: 2464016903823916871, guid: 9e048d2f5cd3cf444b1acb880b04ba0c, type: 3}
   m_HapticDeviceAction:
-    m_UseReference: 1
+    m_UseReference: 0
     m_Action:
       m_Name: Haptic Device
       m_Type: 2

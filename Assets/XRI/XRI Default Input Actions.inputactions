@@ -2254,6 +2254,17 @@
                     "action": "Pause menu",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "835bb5d4-a6a0-41fe-9609-fc6da4c7b479",
+                    "path": "<ViveController>/menu",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller;Continuous Move;Noncontinuous Move",
+                    "action": "Pause menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
