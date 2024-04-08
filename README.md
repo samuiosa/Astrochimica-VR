@@ -25,6 +25,7 @@ Altri package verranno importati automaticamente in base alle necessità.
 Questo strumento permette di sviluppare anche a chi non ha un headset VR in casa, simulando con mouse e tastiera gli input di un visore VR e dei suoi controller. Premesso che questa opzione è **veramente** scomoda, può essere utile se si devono testare delle cose semplici come guardarsi intorno o afferrare oggetti. In ogni caso vi invito a testare principalmente con un vero device.
 Per attivarlo è necessario andare in 'Edit > Project Settings > XR Plug-In Management', estendendo l'opzione selezionare 'XR Interaction Toolkit' ed abilitare 'Use XR Device Simulator in scenes'.
 Una volta fatto, quando entrerete in Play Mode avrete in basso a sinistra un menu con cui saranno spiegati i comandi del simulatore.
+
 ![image](https://github.com/samuiosa/Astrochimica-VR/assets/57435078/8b032d4b-79f6-42aa-934d-fed02f0ceed7)
 
 
@@ -185,16 +186,21 @@ Successivamente, impostare le voci successive come nell'immagine
 
 ![image](https://github.com/samuiosa/Astrochimica-VR/assets/57435078/657a0848-ed86-4b62-9fbf-14d775d6940a)
 
+Nella sezione 'Quality' creare un nuovo livello da impostare come default su Android, con i parametri nell'immagine.
+
+![image](https://github.com/samuiosa/Astrochimica-VR/assets/57435078/09461de4-4b32-4bb3-90a1-51104530c2b0)
+
+Nella sezione 'Time' inserire come Fixed Timestep il valore 1/72 (0.01388889), che è il rateo a cui il Meta Quest processa il tempo.
 
 Nella sezione 'XR Plugin Management' selezionare 'Android' e spuntare la voce 'Oculus'. Nella sezione Oculus selezionare le seguenti voci
 
 ![image](https://github.com/samuiosa/Astrochimica-VR/assets/57435078/a6a900ab-52b6-432f-ab0a-22910c2e7b1b)
 
-Salvati queste impostazioni, potete procedere con la build del progetto, che in questo caso produrrà un file .apk che potete installare sul Meta Quest. Per l'installazione potete impostare il dispositivo in modalità developer, collegarlo al PC e installare l'apk con SideQuest (https://sidequestvr.com/setup-howto).
+Salvate queste impostazioni, potete procedere con la build del progetto, che in questo caso produrrà un file .apk che potete installare sul Meta Quest.
 
 ### Export per HTC Vive / Qualsiasi headset che supporta SteamVR
 Partendo dalle impostazioni precedenti, in build settings selezionare 'Windows' come piattaforma e rimuovere il limite alle texture.
-Nelle impostazioni 'XR Plugin Management', selezionare **OpenXR** per poi inserire i device desiderati nella sezione 'Interaction Profiles'.
-Una volta fatto, potete procedere con la build del progetto, che in questo caso sarà un file exe.
+Nelle impostazioni 'XR Plugin Management', selezionare **OpenXR** per poi inserire i device desiderati nella sezione 'Interaction Profiles', quindi nel mio caso è stato sufficiente inserire il profilo per HTC Vive.
+Una volta fatto, potete procedere con la build del progetto, che in questo caso sarà una cartella con vari file, in cui quello per avviare il gioco è l'exe.
 
 Maggiori approfondimenti a riguardo: https://youtu.be/pNYY1JsS7tY?si=62n99udqdYlcChZC 
